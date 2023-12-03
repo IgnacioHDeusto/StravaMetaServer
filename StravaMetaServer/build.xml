@@ -14,7 +14,7 @@
     </target>
 
 	<target name="2.server" depends="1.build" description="Runs the Server Socket">
-		<java classname="src.Server.MetaServer" classpath="${classpath}" fork="true">
+		<java classname="Server.MetaServer" classpath="${classpath}" fork="true">
 	 		<arg value="${server.port}"/> 
         </java>
     </target>
