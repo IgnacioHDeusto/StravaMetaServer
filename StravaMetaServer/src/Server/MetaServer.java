@@ -12,7 +12,7 @@ public class MetaServer {
 				System.out.println("# Usage: MetaServer[PORT]");
 				System.exit(1);
 			}
-			
+
 			int serverPort = Integer.parseInt(args[0]);
 			
 			try (ServerSocket tcpServerSocket = new ServerSocket(serverPort);){
