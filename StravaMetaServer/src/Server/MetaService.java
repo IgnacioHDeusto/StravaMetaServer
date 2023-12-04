@@ -28,8 +28,10 @@ public class MetaService extends Thread{
 		    this.in = new DataInputStream(socket.getInputStream());
 			this.out = new DataOutputStream(socket.getOutputStream());
 			
-			this.usuariosRegistrados.put("elchigna@gmail.com", "111");
+			this.usuariosRegistrados.put("A", "A");
+			this.usuariosRegistrados.put("elchigna@gmail.com", "1234");
 			this.emails.add("elchigna@gmail.com");
+			this.emails.add("A");
 			
 			this.start();
 		} catch (Exception e) {
@@ -78,21 +80,23 @@ public class MetaService extends Thread{
 				if(!email.equals("") && !contrasena.equals("")) {
 					for (String correo  : usuariosRegistrados.keySet()) {
 						if(correo.equals(email)) {
-							mInicioSesion.put(email, contrasena);
-							
-							System.out.println("- Result login(): true");
-							
-							return "true";
-						} else {
-							System.out.println("  #MetaService - El usuaio no concuerda con el email: " + email);
+							if (usuariosRegistrados.get(email).equals(contrasena)) {
+								
+								mInicioSesion.put(email, contrasena);
+								
+								System.out.println("- Result login(): true");
+								
+								return "true";
+							}
 						}
 					}
+					System.out.println("  #MetaService - El usuario no concuerda con el email: " + email);
 				}
 			} catch (Exception e) {
 				System.out.println("   # MetaService - login() on Meta Failed: " + e.getMessage());
 			}
 		}
-		return null;
+		return "false";
 	}
 	
 	public String checkMail(String msg) {
