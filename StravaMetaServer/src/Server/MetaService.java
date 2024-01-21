@@ -54,7 +54,7 @@ public class MetaService extends Thread{
 				data = this.login(datos);
 			} else if(accion.equals("checkMail")) {
 				String datos = tokenizer.nextToken();
-				data = this.checkMail(datos);
+				data = this.comprobarUsuario(datos);
 			}
 			this.out.writeUTF(data);					
 			System.out.println("   - MetaService - Sent data to '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + data.toUpperCase() + "'");
@@ -99,7 +99,7 @@ public class MetaService extends Thread{
 		return "false";
 	}
 	
-	public String checkMail(String msg) {
+	public String comprobarUsuario(String msg) {
 		if(msg != null && !msg.trim().isEmpty()) {
 			try {
 				StringTokenizer tokenizer = new StringTokenizer(msg, DELIMITER);
